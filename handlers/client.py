@@ -2,7 +2,7 @@ from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ParseMode
 
 from config import bot
-
+from database.bot_db import dql_command_random
 
 # @dp.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
@@ -43,8 +43,13 @@ async def quiz_handler(message: types.Message):
     )
 
 
+async def show_random_user(message: types.Message):
+    await dql_command_random(message)
+
+
 def register_handler_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
     dp.register_message_handler(help_handler, commands=['help'])
     dp.register_message_handler(mem_handler, commands=['mem'])
     dp.register_message_handler(quiz_handler, commands=['quiz'])
+    dp.register_message_handler(show_random_user, commands=['random'])
