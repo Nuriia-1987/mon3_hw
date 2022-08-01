@@ -25,7 +25,7 @@ async def scheduler():
     aioschedule.every().friday.at("18:00").do(go_to_class)
     while True:
         await aioschedule.run_pending()
-        await asyncio.sleep(10)
+        await asyncio.sleep(5)
 
 
 def register_handlers_notification(dp: Dispatcher):

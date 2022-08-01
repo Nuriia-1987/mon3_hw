@@ -2,17 +2,22 @@ from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ParseMode
 
 from config import bot
+from keyboards import client_kb
 from database.bot_db import dql_command_random
+from panser import food
+
 
 # @dp.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
     await bot.send_message(message.chat.id,
                            f"Приветствую Вас! {message.from_user.full_name}")
 
+
 # @dp.message_handler(commands=['help'])
 async def help_handler(message: types.Message):
     await bot.send_message(message.chat.id,
                            f"{message.from_user.full_name} Помоги себе сам!!!!")
+
 
 # @dp.message_handler(commands=['mem'])
 async def mem_handler(message: types.Message):
@@ -47,9 +52,22 @@ async def show_random_user(message: types.Message):
     await dql_command_random(message)
 
 
+async def parser_pizza(message: types.Message):
+    data = food.parser()[:10]
+    for item in data:
+        await bot.send_message(
+            message.from_user.id,
+            f'{item["title"]}\n'
+            f'{item["disc"]}\n'
+            f'{item["price"]}\n'
+            f'{item["photo"]}'
+        )
+
+
 def register_handler_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
     dp.register_message_handler(help_handler, commands=['help'])
     dp.register_message_handler(mem_handler, commands=['mem'])
     dp.register_message_handler(quiz_handler, commands=['quiz'])
     dp.register_message_handler(show_random_user, commands=['random'])
+    dp.register_message_handler(parser_pizza, commands=['pizza'])
