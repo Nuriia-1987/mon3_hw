@@ -111,6 +111,7 @@ async def delete_data(message: types.Message):
         await message.reply("Ты не админ!")
 
 
+
 async def complete_delete(call: types.CallbackQuery):
     await bot_db.sql_command_delete(call.data.replace('delete ', ''))
     await call.answer(text="Блюдо удалено!", show_alert=True)

@@ -56,7 +56,7 @@ async def parser_pizza(message: types.Message):
     data = food.parser()[:10]
     for item in data:
         await bot.send_message(
-            message.from_user.id,
+            message.chat.id,
             f'{item["title"]}\n'
             f'{item["disc"]}\n'
             f'{item["price"]}\n'
