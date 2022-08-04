@@ -2,7 +2,8 @@ from aiogram.utils import executor
 from config import dp
 import logging
 import asyncio
-from handlers import client, callback, extra, admin, fsmAdminMenu, notification
+from handlers import client, callback, extra, admin, fsmAdminMenu, \
+    notification, inline
 from database.bot_db import sql_create
 
 
@@ -15,6 +16,8 @@ callback.register_handler_callback(dp)
 admin.register_handler_admin(dp)
 fsmAdminMenu.register_handlers_fsmmenu(dp)
 notification.register_handlers_notification(dp)
+inline.register_inline_handler(dp)
+
 
 extra.register_message_extra(dp)
 

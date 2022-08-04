@@ -53,7 +53,7 @@ async def show_random_user(message: types.Message):
 
 
 async def parser_pizza(message: types.Message):
-    data = food.parser()[:10]
+    data = food.parser()[:5]
     for item in data:
         await bot.send_message(
             message.chat.id,
