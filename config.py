@@ -8,3 +8,4 @@ TOKEN = config('TOKEN')
 bot = Bot(TOKEN)
 dp = Dispatcher(bot=bot, storage=storage)
 ADMIN = [1746047370, ]
+CHANNEL_ID = "@test19ch"

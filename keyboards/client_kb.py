@@ -13,6 +13,11 @@ cancel_button = KeyboardButton('CANCEL')
 cancel_markup = ReplyKeyboardMarkup(resize_keyboard=True,
                                     one_time_keyboard=True).add(cancel_button)
 
+cancel_qr_button = KeyboardButton("CANCEL QR")
+cancel_qr_markup = ReplyKeyboardMarkup(
+    resize_keyboard=True, one_time_keyboard=True).add(cancel_qr_button)
+
+
 start_button = KeyboardButton("/start")
 mem_button = KeyboardButton("/mem")
 help_button = KeyboardButton("/help")
@@ -25,4 +30,6 @@ random_dish = KeyboardButton("/random_dish")
 show_menu = KeyboardButton("/show_menu")
 delete_dish = KeyboardButton("/del_dish")
 training_button = KeyboardButton("напимни")
-cars_button = KeyboardButton("/cars")
+start_markup = ReplyKeyboardMarkup(resize_keyboard=True,
+                                   one_time_keyboard=True)
+style_markup.row(start_button, game_button, dice_button)

@@ -1,22 +1,28 @@
 from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ParseMode
 
-from config import bot
+from config import bot, CHANNEL_ID
 from keyboards import client_kb
 from database.bot_db import dql_command_random
 from panser import food
+from .services import check_sub_channel
 
 
 # @dp.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
-    await bot.send_message(message.chat.id,
-                           f"Приветствую Вас! {message.from_user.full_name}")
+    if check_sub_channel(await bot.get_chat_member(chat_id=CHANNEL_ID, user_id=message.from_user.id)):
+        await bot.send_message(message.chat.id,
+                               f"Приветствую Вас! {message.from_user.full_name}",
+                               reply_markup=client_kb.start_markup)
+    else:
+        await bot.send_message(message.from_user.id,
+                               f"Чтобы пользоваться ботомб подпишись на канал")
 
 
 # @dp.message_handler(commands=['help'])
 async def help_handler(message: types.Message):
     await bot.send_message(message.chat.id,
-                           f"{message.from_user.full_name} Помоги себе сам!!!!")
+                           f"{message.from_user.full_name} Пмогу чем смогу!!!!")
 
 
 # @dp.message_handler(commands=['mem'])

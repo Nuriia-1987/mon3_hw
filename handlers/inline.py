@@ -10,7 +10,7 @@ def finder(text):
     return result
 
 
-pprint(finder("slivki"))
+# pprint(finder("slivki"))
 
 
 async def inline_youtube_handlers(query: types.InlineQuery):
