@@ -1,4 +1,6 @@
 import hashlib
+from pprint import pprint
+
 from aiogram import types, Dispatcher
 from youtube_search import YoutubeSearch as YT
 
@@ -8,11 +10,14 @@ def finder(text):
     return result
 
 
+pprint(finder("slivki"))
+
+
 async def inline_youtube_handlers(query: types.InlineQuery):
     text = query.query or "echo"
     links = finder(text)
     articles = [types.InlineQueryResultArticle(
-        id = hashlib.md5(f"{link['id']}".encode()).hexdigest(),
+        id=hashlib.md5(f"{link['id']}".encode()).hexdigest(),
         title=f"{link['title']}",
         url=f"http://www.youtube.com/match?v={link['id']}",
         thumb_url=f"{link['thumbnails'][0]}",
