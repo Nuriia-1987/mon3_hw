@@ -1,4 +1,6 @@
 from aiogram.utils import executor
+from decouple import config
+
 from config import dp, URL, bot
 import logging
 import asyncio
@@ -37,5 +39,5 @@ if __name__ == "__main__":
         on_shutdown=on_shutdown,
         skip_updates=True,
         host='0.0.0.0',
-        port=confid("PORT", cast=int)
+        port=config("PORT", cast=int)
     )

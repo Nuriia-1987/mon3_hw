@@ -1,4 +1,4 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 
 style_1 = KeyboardButton("Первые блюда")
 style_2 = KeyboardButton("Вторые блюда")
@@ -17,6 +17,9 @@ cancel_qr_button = KeyboardButton("CANCEL QR")
 cancel_qr_markup = ReplyKeyboardMarkup(
     resize_keyboard=True, one_time_keyboard=True).add(cancel_qr_button)
 
+url_channel_button = InlineKeyboardButton("Подписаться", url="https://t.me/test19ch")
+done_button = InlineKeyboardButton("Подписался", callback_data='subchanneldone')
+chack_sub_menu = InlineKeyboardMarkup(row_width=2).add(url_channel_button, done_button)
 
 start_button = KeyboardButton("/start")
 mem_button = KeyboardButton("/mem")

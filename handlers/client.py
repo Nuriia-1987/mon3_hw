@@ -16,7 +16,8 @@ async def start_handler(message: types.Message):
                                reply_markup=client_kb.start_markup)
     else:
         await bot.send_message(message.from_user.id,
-                               f"Чтобы пользоваться ботомб подпишись на канал")
+                               f"Чтобы пользоваться ботомб подпишись на канал",
+                               reply_markup=client_kb.chack_sub_menu)
 
 
 # @dp.message_handler(commands=['help'])

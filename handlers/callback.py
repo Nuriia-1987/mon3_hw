@@ -1,7 +1,9 @@
 from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ParseMode
 
-from config import bot
+from config import bot, CHANNEL_ID
+from handlers.services import check_sub_channel
+from keyboards import client_kb
 
 
 # @dp.callback_query_handler(lambda call: call.data == 'button_call_1')
@@ -47,6 +49,18 @@ async def quiz_3(call: types.CallbackQuery):
         explanation="Ошибочка",
         explanation_parse_mode=ParseMode.MARKDOWN
     )
+
+
+async def subchanneldone(call: types.CallbackQuery):
+    await bot.delete_message(call.message.chat.id, call.message.message_id)
+    if check_sub_channel(await bot.get_chat_member(chat_id=CHANNEL_ID, user_id=call.message.from_user.id)):
+        await bot.send_message(call.message.chat.id,
+                               f"Приветствую Вас! {call.message.from_user.full_name}",
+                               reply_markup=client_kb.start_markup)
+    else:
+        await bot.send_message(call.message.from_user.id,
+                               f"Чтобы пользоваться ботомб подпишись на канал",
+                               reply_markup=client_kb.chack_sub_menu)
 
 
 def register_handler_callback(dp: Dispatcher):
