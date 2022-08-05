@@ -1,6 +1,7 @@
 
 # extra 2.
 
+
 def make_readoble(sec):
     return f"{'{:02}'.format(sec//3600)}:{'{:02}'.format(sec//60%60)}:{'{:02}'.format(sec%60)}"
 

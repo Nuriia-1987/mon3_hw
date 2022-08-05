@@ -1,10 +1,13 @@
-
+from keyboards import client_kb
 from aiogram import types, Dispatcher
 
 from config import bot
 
 
 # @dp.message_handler()
+
+
+
 async def echo(message: types.Message):
     if message.text.startswith('!pin'):
         if not message.reply_to_message:
@@ -32,6 +35,9 @@ async def echo(message: types.Message):
                                    f"У бота {a.dice.value} и у игрока {b.dice.value}\n"
                                    "Ничья")
             return
+
+    elif message.text == "🧆 Меню":
+        await bot.send_message(message.chat.id, '🧆 Меню', reply_markup=client_kb.menu_markup)
 
     a = message.text
     try:

@@ -87,8 +87,8 @@ async def cancel_registration(message: types.Message, state: FSMContext):
     if current_state is None:
         return
     else:
+        await message.answer("Регистрация блюда отмененна!", reply_markup=client_kb.start_markup)
         await state.finish()
-        await message.answer("Регистрация блюда отмененна!")
 
 
 async def delete_data(message: types.Message):
